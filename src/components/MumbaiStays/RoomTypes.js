@@ -25,7 +25,7 @@ export default function RoomTypes( { rooms } ) {
               className="bg-gray-100 rounded-lg overflow-hidden shadow-md flex flex-col md:flex-row"
             >
               {/* Image Slider */}
-              <div className="relative w-full md:w-1/2 h-[260px] md:h-auto">
+              <div className="relative w-full md:w-1/2 lg:h-[260px] h-full ">
                 <Swiper
                   modules={[Navigation]}
                   navigation={{
@@ -55,7 +55,7 @@ export default function RoomTypes( { rooms } ) {
                 </Swiper>
 
                 {/* Custom Navigation */}
-                <div className="absolute inset-0 flex items-end mb-0 gap-[0.5px] z-10">
+                <div className="absolute bottom-0 inset-0 flex items-end mb-0 gap-[0.5px] z-10">
                   <button
                     ref={prevRef}
                     className="bg-black/60 text-white p-2  hover:bg-black"
@@ -77,7 +77,7 @@ export default function RoomTypes( { rooms } ) {
                 <p className="mb-1">{room.guests}</p>
                 <p className="mb-1">{room.bedroom}</p>
                 <p className="mb-4">{room.bathroom}</p>
-                <button className="bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 text-sm tracking-wider uppercase">
+                <button className="bg-black text-white py-2 px-2 rounded-lg hover:bg-gra text-sm tracking-wider uppercase">
                   Check Availability
                 </button>
               </div>

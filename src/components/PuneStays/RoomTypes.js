@@ -9,7 +9,6 @@ import 'swiper/css/navigation';
 import { IoChevronBack, IoChevronForward } from 'react-icons/io5';
 
 
-
 export default function RoomTypes( { rooms } ) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-12">
@@ -27,7 +26,7 @@ export default function RoomTypes( { rooms } ) {
                     className="bg-gray-100 rounded-lg overflow-hidden shadow-md flex flex-col md:flex-row"
                   >
                     {/* Image Slider */}
-                    <div className="relative w-full md:w-1/2 h-[260px] md:h-auto">
+                    <div className="relative w-full md:w-1/2 lg:h-[260px] h-full">
                       <Swiper
                         modules={[Navigation]}
                         navigation={{
@@ -57,7 +56,7 @@ export default function RoomTypes( { rooms } ) {
                       </Swiper>
       
                       {/* Custom Navigation */}
-                      <div className="absolute inset-0 flex items-end mb-0 gap-[0.5px] z-10">
+                      <div className="absolute bottom-0 inset-0 flex items-end mb-0 gap-[0.5px] z-10">
                         <button
                           ref={prevRef}
                           className="bg-black/60 text-white p-2  hover:bg-black"

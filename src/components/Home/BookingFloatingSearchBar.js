@@ -1,11 +1,39 @@
 'use client';
-import { useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 import { IoChevronDown, IoAdd, IoRemove } from 'react-icons/io5';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
+const destinations = [
+  {
+    city: "Varsity - Santacruz",
+    // areas: ["Dallas – Downtown"]
+  },
+  {
+    city: "Southside - Mahalaxmi",
+    // areas: ["Denver – Downtown", "Union Station"]
+  },
+  {
+    city: "Hamlet - Baner",
+    // areas: ["Greenville – West End"]
+  },
+];
 
 export default function BookingFloatingSearchBar() {
   const [guests, setGuests] = useState(1);
   const [isSticky, setIsSticky] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+  const checkInRef = useRef(null);
+  const checkOutRef = useRef(null);
+
+
+  const [selectedDestination, setSelectedDestination] = useState("Where to next");
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
+  const [showCheckIn, setShowCheckIn] = useState(false);
+  const [showCheckOut, setShowCheckOut] = useState(false);
 
   const incrementGuests = () => setGuests((prev) => prev + 1);
   const decrementGuests = () => setGuests((prev) => Math.max(1, prev - 1));
@@ -13,8 +41,7 @@ export default function BookingFloatingSearchBar() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const triggerPoint = window.innerHeight * 0.7; // 70vh
-
+      const triggerPoint = window.innerHeight * 0.7;
       setIsVisible(scrollY > triggerPoint);
       setIsSticky(scrollY > triggerPoint);
     };
@@ -23,61 +50,111 @@ export default function BookingFloatingSearchBar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (checkInRef.current && !checkInRef.current.contains(event.target)) {
+        setShowCheckIn(false);
+      }
+      if (checkOutRef.current && !checkOutRef.current.contains(event.target)) {
+        setShowCheckOut(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+
+  const handleDestinationSelect = (area) => {
+    setSelectedDestination(area);
+    setShowDropdown(false);
+  };
+
   if (!isVisible) return null;
 
   return (
     <div
-    className={`hidden md:block z-[998] w-full transition-all duration-300 ease-in-out ${
+      className={`hidden md:block z-[998] w-full transition-all duration-300 ease-in-out ${
         isSticky
-        ? 'fixed top-[92px] left-1/2 -translate-x-1/2'
-        : 'absolute top-[90%] left-1/2 -translate-x-1/2'
-    }`}
+          ? 'fixed top-[92px] left-1/2 -translate-x-1/2'
+          : 'absolute top-[90%] left-1/2 -translate-x-1/2'
+      }`}
     >
-      <div className="w-[100%] bg-white shadow-2xl border border-gray-200 overflow-hidden">
+      <div className="w-full bg-white shadow-2xl border border-gray-200 overflow-visible">
         <div className="grid grid-cols-1 md:grid-cols-5 divide-y md:divide-y-0 md:divide-x">
           {/* Destination */}
-          <div className="flex flex-col items-center py-4 px-6">
-            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">
-              Destination
-            </label>
-            <div className="relative w-full">
-              <select className="w-full text-center appearance-none bg-transparent text-base font-medium text-gray-800 cursor-pointer pr-6">
-                <option>Where to next</option>
-                <option>Varsity, Santracruz</option>
-                <option>Southside, Mahalaxmi</option>
-                <option>Hamlet, Baner</option>
-              </select>
-              <IoChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none" />
+          <div className="flex flex-col items-center py-4 px-6 relative">
+            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">Destination</label>
+            <div
+              className="relative w-full text-center cursor-pointer"
+              onClick={() => setShowDropdown(!showDropdown)}
+            >
+              <div className="text-base font-medium text-gray-800 pr-4">
+                {selectedDestination}
+              </div>
+              <IoChevronDown className="absolute right-12 top-1/2 transform -translate-y-1/2 text-gray-500 pointer-events-none" />
+              {showDropdown && (
+                <div className="absolute z-30 bg-white shadow-lg rounded-md mt-2 w-60 max-h-64 overflow-y-auto left-1/2 transform -translate-x-1/2">
+                  {destinations.map((city, i) => (
+                    <div key={i} className="p-3">
+                      <p className="font-semibold">{city.city}</p>
+                      
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
 
           {/* Check In */}
-          <div className="flex flex-col items-center py-4 px-6">
-            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">
-              Check In
-            </label>
-            <input
-              type="date"
-              className="bg-transparent text-center w-full text-base font-medium text-gray-800 cursor-pointer"
-            />
+          <div className="flex flex-col items-center py-4 px-6 relative">
+            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">Check In</label>
+            <div
+              onClick={() => setShowCheckIn(!showCheckIn)}
+              className="text-base font-medium text-gray-800 text-center cursor-pointer"
+            >
+              {checkInDate ? checkInDate.toDateString() : 'Select date'}
+            </div>
+            {showCheckIn && (
+              <div ref={checkInRef} className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg">
+                <Calendar
+                  onChange={(date) => {
+                    setCheckInDate(date);
+                    setShowCheckIn(false);
+                  }}
+                  value={checkInDate}
+                />
+              </div>
+            )}
+
           </div>
 
           {/* Check Out */}
-          <div className="flex flex-col items-center py-4 px-6">
-            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">
-              Check Out
-            </label>
-            <input
-              type="date"
-              className="bg-transparent text-center w-full text-base font-medium text-gray-800 cursor-pointer"
-            />
+          <div className="flex flex-col items-center py-4 px-6 relative">
+            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">Check Out</label>
+            <div
+              onClick={() => setShowCheckOut(!showCheckOut)}
+              className="text-base font-medium text-gray-800 text-center cursor-pointer"
+            >
+              {checkOutDate ? checkOutDate.toDateString() : 'Select date'}
+            </div>
+            {showCheckOut && (
+              <div ref={checkOutRef} className="absolute z-50 mt-2 bg-white rounded-lg shadow-lg">
+                <Calendar
+                  onChange={(date) => {
+                    setCheckOutDate(date);
+                    setShowCheckOut(false);
+                  }}
+                  value={checkOutDate}
+                />
+              </div>
+            )}
+
           </div>
 
           {/* Guests */}
           <div className="flex flex-col items-center py-4 px-6">
-            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">
-              Guests
-            </label>
+            <label className="text-sm text-gray-700 font-[QuicksandMedium] uppercase mb-2">Guests</label>
             <div className="flex items-center gap-4">
               <button
                 onClick={decrementGuests}
@@ -97,7 +174,7 @@ export default function BookingFloatingSearchBar() {
 
           {/* Search Button */}
           <div className="md:col-span-1 bg-black">
-            <button className="w-full h-full bg-black text-white text-lg font-semibold  uppercase hover:bg-gray-900 transition-all ">
+            <button className="w-full h-full bg-black text-white text-lg font-semibold uppercase hover:bg-gray-900 transition-all">
               Search
             </button>
           </div>

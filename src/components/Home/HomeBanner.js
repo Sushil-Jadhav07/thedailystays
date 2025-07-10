@@ -1,133 +1,146 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Autoplay } from "swiper/modules"
-import { IoChevronDown, IoRemove, IoAdd, IoLocationSharp } from "react-icons/io5"
-import Image from "next/image"
-import BannerOne from "../../assets/pcBanner1.png" 
-import BannerTwo from "../../assets/pcBanner2.png"
-import BannerThree from "../../assets/pcBanner3.png"
+import { useState, useRef, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Autoplay } from "swiper/modules";
+import { IoChevronDown, IoRemove, IoAdd } from "react-icons/io5";
+import Calendar from "react-calendar";
+import Image from "next/image";
+import BannerOne from "../../assets/pcBanner1.png";
+import BannerTwo from "../../assets/pcBanner2.png";
+import BannerThree from "../../assets/pcBanner3.png";
+import "swiper/css";
+import "react-calendar/dist/Calendar.css";
 
-// Import Swiper styles
-import "swiper/css"
+const destinations = [
+  { city: "Varsity - Santacruz" },
+  { city: "Southside - Mahalaxmi" },
+  { city: "Hamlet - Baner" },
+];
 
 const HomeBanner = () => {
-  const [guests, setGuests] = useState(1)
+  const [guests, setGuests] = useState(1);
+  const [selectedDestination, setSelectedDestination] = useState("Where to next");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [checkInDate, setCheckInDate] = useState(null);
+  const [checkOutDate, setCheckOutDate] = useState(null);
+  const [showCheckIn, setShowCheckIn] = useState(false);
+  const [showCheckOut, setShowCheckOut] = useState(false);
 
-  const incrementGuests = () => setGuests((prev) => prev + 1)
-  const decrementGuests = () => setGuests((prev) => Math.max(1, prev - 1))
+  const dropdownRef = useRef(null);
+  const checkInRef = useRef(null);
+  const checkOutRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setShowDropdown(false);
+      }
+      if (checkInRef.current && !checkInRef.current.contains(e.target)) {
+        setShowCheckIn(false);
+      }
+      if (checkOutRef.current && !checkOutRef.current.contains(e.target)) {
+        setShowCheckOut(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  const incrementGuests = () => setGuests((prev) => prev + 1);
+  const decrementGuests = () => setGuests((prev) => Math.max(1, prev - 1));
+  const handleDestinationSelect = (destination) => {
+    setSelectedDestination(destination);
+    setShowDropdown(false);
+  };
 
   return (
-    <div className="relative lg:pt-0 ">
+    <div className="relative lg:pt-0">
       <Swiper
         spaceBetween={0}
         className="h-[600px] lg:h-[650px]"
         draggable={true}
         slidesPerView={1}
-        autoplay={{
-          delay: 4000,
-          disableOnInteraction: false,
-        }}
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
         loop={true}
         modules={[Autoplay]}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
       >
-        <SwiperSlide>
-          <div className="relative w-full h-full">
-            <Image
-              className="w-full h-full object-cover"
-              src={BannerOne}
-              alt="Luxury hotel room"
-              width={1200}
-              height={600}
-            />
-          </div>
-        </SwiperSlide>
-
-        <SwiperSlide>
-          <div className="relative w-full h-full">
-            <Image
-              className="w-full h-full object-cover"
-              src={BannerTwo}
-              alt="Modern apartment interior"
-              width={1200}
-              height={600}
-            />
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="relative w-full h-full">
-            <Image
-              className="w-full h-full object-cover"
-              src={BannerThree}
-              alt="Modern apartment interior"
-              width={1200}
-              height={600}
-            />
-          </div>
-        </SwiperSlide>
+        {[BannerOne, BannerTwo, BannerThree].map((banner, index) => (
+          <SwiperSlide key={index}>
+            <div className="relative w-full h-full">
+              <Image
+                className="w-full h-full object-cover"
+                src={banner}
+                alt={`Banner ${index + 1}`}
+                width={1200}
+                height={600}
+              />
+            </div>
+          </SwiperSlide>
+        ))}
       </Swiper>
-
-      {/* Location Tag */}
-      {/* <div className="absolute top-6 left-6 z-10">
-        <div className="bg-emerald-800 text-white px-4 py-2 rounded-full flex items-center gap-2 text-sm font-medium">
-          <IoLocationSharp className="w-4 h-4" />
-          New York City
-        </div>
-      </div> */}
 
       {/* Booking Form Overlay */}
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 z-10 top-[10%] lg:top-[80%] w-full max-w-[90%] lg:max-w-[80%] px-0">
         <div className="bg-white rounded-2xl shadow-2xl p-0">
-          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5  ">
+          <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5">
             {/* Destination */}
-            <div className="space-y-2 flex border-b-[1px] lg:border-r-[1px] border-[#272727] flex-col items-center">
-              <label className="text-sm pt-6 font-[QuicksandMedium] text-black uppercase tracking-wide">DESTINATION</label>
-              <div className="relative">
-                <div className="flex items-center  rounded px-4 py-0 text-base text-gray-600 bg-transparent w-full">
-                  <select
-                    className="flex-1 px-8 bg-transparent outline-none appearance-none cursor-pointer"
-                  >
-                    <option>Where to next</option>
-                    <option>Santracruz, Mumbai</option>
-                    <option>Mahalaxmi, Mumbai</option>
-                    <option>Baner, Pune</option>
-                  </select>
-                  <IoChevronDown className="ml-[-3rem] w-5 h-5 text-gray-400" />
+            <div className="space-y-2 flex lg:border-r-[1px] border-[#272727] flex-col items-center relative" ref={dropdownRef}>
+              <label className="text-base pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">DESTINATION</label>
+              <div className="relative w-full flex justify-center">
+                <div
+                  onClick={() => setShowDropdown(!showDropdown)}
+                  className="cursor-pointer px-10 py-0 flex items-center justify-center w-full bg-transparent text-black text-base"
+                >
+                  <span>{selectedDestination}</span>
+                  <IoChevronDown className="ml-4 w-5 h-5 text-gray-400" />
                 </div>
+                {showDropdown && (
+                  <div className="absolute z-30 bg-white shadow-lg rounded-md mt-8 w-60 max-h-64 overflow-y-auto">
+                    {destinations.map((city, i) => (
+                      <div key={i} className="flex items-center justify-center p-3">
+                        <p
+                          className="font-semibold cursor-pointer hover:text-black text-gray-700"
+                          onClick={() => handleDestinationSelect(city.city)}
+                        >
+                          {city.city}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
-
             </div>
 
             {/* Check In */}
-            <div className="space-y-2 border-b-[1px] lg:border-r-[1px] border-[#272727] flex flex-col items-center">
-              <label className="text-sm pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">CHECK IN</label>
-              <div className="relative">
-                <input
-                  type="date"
-                  className="w-full p-4 !pt-0 text-gray-600 bg-transparent border-0 focus:outline-none cursor-pointer text-base"
-                  placeholder="Select date"
-                />
+            <div className="space-y-2 lg:border-r-[1px] border-[#272727] flex flex-col items-center relative" ref={checkInRef}>
+              <label className="text-base pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">CHECK IN</label>
+              <div onClick={() => setShowCheckIn(!showCheckIn)} className="cursor-pointer p-4 !pt-0">
+                {checkInDate ? checkInDate.toDateString() : 'Select date'}
               </div>
+              {showCheckIn && (
+                <div className="absolute z-30 mt-2 bg-white rounded-lg shadow-lg">
+                  <Calendar onChange={(date) => { setCheckInDate(date); setShowCheckIn(false); }} value={checkInDate} />
+                </div>
+              )}
             </div>
 
             {/* Check Out */}
-            <div className="space-y-2 border-b-[1px] lg:border-r-[1px] border-[#272727] flex flex-col items-center">
-              <label className="text-sm pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">CHECK OUT</label>
-              <div className="relative">
-                <input
-                  type="date"
-                  className="w-full p-4 !pt-0 text-gray-600 bg-transparent border-0 focus:outline-none cursor-pointer text-base"
-                  placeholder="Select date"
-                />
+            <div className="space-y-2 lg:border-r-[1px] border-[#272727] flex flex-col items-center relative" ref={checkOutRef}>
+              <label className="text-base pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">CHECK OUT</label>
+              <div onClick={() => setShowCheckOut(!showCheckOut)} className="cursor-pointer p-4 !pt-0">
+                {checkOutDate ? checkOutDate.toDateString() : 'Select date'}
               </div>
+              {showCheckOut && (
+                <div className="absolute z-30 mt-2 bg-white rounded-lg shadow-lg">
+                  <Calendar onChange={(date) => { setCheckOutDate(date); setShowCheckOut(false); }} value={checkOutDate} />
+                </div>
+              )}
             </div>
 
             {/* Guests */}
-            <div className="space-y-2 border-b-[1px] lg:border-r-[1px] border-[#272727] flex flex-col items-center">
-              <label className="text-sm pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">GUESTS</label>
+            <div className="space-y-2 lg:border-r-[1px] border-[#272727] flex flex-col items-center">
+              <label className="text-base pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">GUESTS</label>
               <div className="flex items-center justify-between p-4 !pt-0">
                 <button
                   onClick={decrementGuests}
@@ -148,7 +161,7 @@ const HomeBanner = () => {
 
             {/* Search Button */}
             <div className="md:col-span-1">
-              <button className="w-full bg-emerald-800 hover:bg-emerald-900 bg-black text-white font-semibold py-4 px-8 h-[100%] lg:rounded-tr-xl lg:rounded-br-xl rounded-br-xl rounded-bl-xl lg:rounded-bl-none transition-colors duration-200 text-base tracking-wide">
+              <button className="w-full bg-emerald-800 hover:bg-emerald-900 bg-black text-white font-semibold py-4 px-8 h-full lg:rounded-tr-xl lg:rounded-br-xl rounded-br-xl rounded-bl-xl lg:rounded-bl-none transition-colors duration-200 text-base tracking-wide">
                 SEARCH
               </button>
             </div>
@@ -156,7 +169,7 @@ const HomeBanner = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default HomeBanner
+export default HomeBanner;

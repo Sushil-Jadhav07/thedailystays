@@ -10,8 +10,8 @@ export default function AboutAmenities() {
       
 
       {/* Standard Amenities */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-gray-50 py-8 px-4 md:px-8 rounded-md">
-        <h3 className="text-xl md:text-2xl font-[QuicksandBold] mb-6">Privileges</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:gap-8 gap-4 bg-gray-50 py-8 px-4 md:px-8 rounded-md">
+        <h3 className="text-xl md:text-2xl font-[QuicksandBold] lg:mb-6 mb-2">Privileges</h3>
         <div className="  text-gray-700">
           <ul className="space-y-2">
             <li>Contactless Check-In</li>
@@ -30,8 +30,8 @@ export default function AboutAmenities() {
       </div>
 
       {/* Special Amenities */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 bg-green-50 py-8 px-4 md:px-8 rounded-md">
-        <h3 className="text-xl md:text-2xl font-[QuicksandBold] mb-6">Neighbourhood</h3>
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:gap-8 gap-4 bg-green-50 py-8 px-4 md:px-8 rounded-md">
+        <h3 className="text-xl md:text-2xl font-[QuicksandBold] lg:mb-6 mb-2">Neighbourhood</h3>
         <div className=" text-gray-700">
 
           <div className="space-y-4">
