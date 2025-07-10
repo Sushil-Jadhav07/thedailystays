@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+  @font-face {
+    font-family: "QuicksandBold";
+    src: local("QuicksandBold"),
+        url("../webfonts/Quicksand-Bold.ttf") format("truetype");
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: "QuicksandMedium";
+    src: local("QuicksandMedium"),
+        url("../webfonts/Quicksand-Medium.ttf") format("truetype");
+    font-weight: bold;
+  }
+  @font-face {
+    font-family: "MontserratRegular";
+    src: local("MontserratRegular"),
+        url("../webfonts/Montserrat-Regular.ttf") format("truetype");
+    font-weight: bold;
+  }
+
+
