@@ -77,7 +77,7 @@ export default function RoomTypes( { rooms } ) {
                 <p className="mb-1">{room.guests}</p>
                 <p className="mb-1">{room.bedroom}</p>
                 <p className="mb-4">{room.bathroom}</p>
-                <button className="bg-[#002d1d] text-white py-2 px-2 rounded-lg hover:opacity-90 text-sm tracking-wider uppercase">
+                <button className="bg-black text-white py-2 px-2 rounded-lg hover:bg-gray-800 text-sm tracking-wider uppercase">
                   Check Availability
                 </button>
               </div>

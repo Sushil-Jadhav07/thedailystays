@@ -14,7 +14,7 @@ export default function TestimonialsSection() {
     {
       id: 0,
       quote:
-        "Beautiful stay and was blown away by the thoughtful design and attention to detail of the apartment. Can't wait to visit other Sonders in the future.",
+        "Stayed at Varsity for a month during a work trip and it felt like home from day one. The check-in was seamless, the apartment was spotless, and the amenities were far better than a hotel. Will definitely book again.",
       name: "Niraj",
       location: "Pune",
       bgColor: "bg-[#9EC6F3]",
@@ -22,7 +22,7 @@ export default function TestimonialsSection() {
     },
     {
       id: 1,
-      quote: "Absolutely perfect for a stay whether you're a solo traveler, couple or a family.",
+      quote: "As a digital nomad, I need clean, quiet, and well-connected homes—and that’s exactly what I got. Fast Wi-Fi, comfy workspace, and a cozy bed after long workdays. Plus, the neighbourhood had great cafés.",
       name: "Ritu",
       location: "Baner",
       bgColor: "bg-[#FFDCDC]",
@@ -30,7 +30,7 @@ export default function TestimonialsSection() {
     },
     {
       id: 2,
-      quote: "Love the app! It works seamlessly and all the information is so clear to make the experience seamless.",
+      quote: "I booked a apartment while house-hunting in Pune and ended up extending my stay twice. No paperwork hassles, no broker calls, just smooth, easy living. Highly recommended for anyone in transition.",
       name: "Priya",
       location: "Santacruz",
       bgColor: "bg-[#CB9DF0]",
@@ -38,20 +38,13 @@ export default function TestimonialsSection() {
     },
     {
       id: 3,
-      quote: "The location was perfect and the space was exactly what we needed for our weekend getaway.",
+      quote: "I needed a place for my parents to stay near my college, and The Daily Stays was the best decision. They felt safe, the staff was polite, and everything was well-maintained. It’s a great option for families too.",
       name: "Akash",
       location: "Mahalaxmi",
       bgColor: "bg-[#F6AE99]",
       borderRadius: "rounded-br-[60px]", // bottom-right corner
     },
-    {
-      id: 4,
-      quote: "Exceptional service and beautiful accommodations. Will definitely be staying again!",
-      name: "Neha",
-      location: "Pune",
-      bgColor: "bg-[#EBD6FB]",
-      borderRadius: "rounded-tl-[60px]", // back to top-left (cycle repeats)
-    },
+
   ]
 
   return (
