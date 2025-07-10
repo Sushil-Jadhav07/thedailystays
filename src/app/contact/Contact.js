@@ -1,9 +1,6 @@
 'use client';
 
-import Image from 'next/image';
 import React, { useState } from 'react';
-import ContactImage from '../../assets/carouselImage2.png';
-import Link from 'next/link';
 
 const ContactUs = () => {
   const [form, setForm] = useState({
@@ -20,69 +17,74 @@ const ContactUs = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+    // Submit logic (API, email, etc.)
   };
 
   return (
-    <div className="px-4 py-8 lg:px-16 lg:py-12 bg-[#ebebeb]">
-      <div className="grid grid-cols-1 gap-[15px] items-center lg:gap-[50px] lg:grid-cols-2 grid-flow-row">
-        <div>
-          <Image className="rounded-[20px]" src={ContactImage} alt="Contact" />
+    <div className="min-h-screen w-full bg-white px-6 md:px-10 py-16 flex flex-col items-center">
+      {/* Heading */}
+      <h1 className="text-4xl md:text-5xl font-[PlayfairDisplay] text-black mb-10 text-center">
+        Contact Us
+      </h1>
+
+      {/* Form */}
+      <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-6">
+        {/* First & Last Name */}
+        <div className="flex flex-col md:flex-row gap-6">
+          <input
+            type="text"
+            name="firstName"
+            placeholder="First Name*"
+            required
+            value={form.firstName}
+            onChange={handleChange}
+            className="w-full border  border-gray-200 px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-black"
+          />
+          <input
+            type="text"
+            name="lastName"
+            placeholder="Last Name*"
+            required
+            value={form.lastName}
+            onChange={handleChange}
+            className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-black"
+          />
         </div>
 
-        <div className="flex lg:px-8 items-start justify-start flex-col w-full">
-          <h3 className="text-center text-[1.4rem] lg:text-[2.5rem] text-[#75665f] font-[QuicksandBold]">Contact Us</h3>
-          <div className="h-[5px] mb-4 w-[60px] lg:w-[100px] bg-[#f47133]"></div>
+        {/* Email */}
+        <input
+          type="email"
+          name="email"
+          placeholder="Email*"
+          required
+          value={form.email}
+          onChange={handleChange}
+          className="w-full border border-gray-200 px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-black"
+        />
 
-          <form onSubmit={handleSubmit} className="w-full max-w-4xl space-y-6 mt-6">
-            <div className="flex flex-col md:flex-row gap-6 w-full">
-              <input
-                type="text"
-                name="firstName"
-                placeholder="First Name*"
-                required
-                value={form.firstName}
-                onChange={handleChange}
-                className="w-full border px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-black rounded-lg"
-              />
-              <input
-                type="text"
-                name="lastName"
-                placeholder="Last Name*"
-                required
-                value={form.lastName}
-                onChange={handleChange}
-                className="w-full border px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-black rounded-lg"
-              />
-            </div>
+        {/* Message */}
+        <textarea
+          name="message"
+          placeholder="How we can help?*"
+          required
+          value={form.message}
+          onChange={handleChange}
+          className="w-full border border-gray-200 px-4 py-3 text-sm h-40 resize-none outline-none focus:ring-1 focus:ring-black"
+        />
 
-            <input
-              type="email"
-              name="email"
-              placeholder="Email*"
-              required
-              value={form.email}
-              onChange={handleChange}
-              className="w-full border px-4 py-3 text-sm outline-none focus:ring-1 focus:ring-black rounded-lg"
-            />
+        {/* Submit Button */}
+        <button
+          type="submit"
+          className="w-full border border-black py-3 text-sm tracking-widest font-medium hover:bg-black hover:text-white transition"
+        >
+          SEND
+        </button>
+      </form>
 
-            <textarea
-              name="message"
-              placeholder="How we can help?*"
-              required
-              value={form.message}
-              onChange={handleChange}
-              className="w-full border px-4 py-3 text-sm h-40 resize-none outline-none focus:ring-1 focus:ring-black rounded-lg"
-            />
-
-            <button
-              type="submit"
-              className="w-full border border-black py-3 text-sm tracking-widest font-medium hover:bg-black hover:text-white transition"
-            >
-              SEND
-            </button>
-          </form>
-        </div>
-      </div>
+      {/* Footer Note */}
+      <p className="mt-16 text-center text-sm text-black max-w-xl">
+        If you need immediate help or need access to a property, please call <span className="cursor-pointer underline">702165226</span>.
+      </p>
     </div>
   );
 };

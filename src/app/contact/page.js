@@ -7,16 +7,18 @@ import BookingFloatingSearchBar from '@/components/Home/BookingFloatingSearchBar
 import FAQSection from '@/components/Home/FaqSection'
 import FooterSection from '@/components/Layout/FooterSection'
 import NavbarTwo from '@/components/Layout/Navbar'
+import ContactBooking from '@/components/contact/ContactBooking'
 
 const page = () => {
   return (
     <div>
         <NavbarTwo />
                 <div className=''>
-                <HomeBanner />
-                <BookingFloatingSearchBar />
+                {/* <HomeBanner /> */}
+                <ContactBooking />
+                {/* <BookingFloatingSearchBar /> */}
                 <ContactPage />
-                <FAQSection />
+                {/* <FAQSection /> */}
                 {/* <Whyus /> */}
                 {/* <ContactUs /> */}
                 {/* <Partner /> */}
