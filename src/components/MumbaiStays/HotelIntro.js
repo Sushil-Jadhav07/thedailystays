@@ -74,8 +74,8 @@ export default function HotelIntro({title, location, locationLink, desc, bannerI
 
   {/* Left Content */}
   <div className="space-y-4">
-    <h1 className="text-3xl md:text-5xl font-[QuicksandBold]">{title}</h1>
-    <p className="text-lg text-gray-700">{location}</p>
+    <h1 className="text-3xl md:text-5xl font-[QuicksandBold]">{location}</h1>
+    {/* <p className="text-lg text-gray-700">{location}</p> */}
     <button className="text-sm underline font-[QuicksandMedium] text-black">VIEW ON MAP</button>
 
     {/* <h2 className="font-semibold mt-6 text-xl">Varsity</h2> */}

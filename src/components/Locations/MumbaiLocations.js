@@ -30,9 +30,9 @@ const MumbaiLocations = () => {
               {/* Text Column */}
               <div className="md:w-1/2 w-full flex flex-col justify-between p-6">
                 <div className="space-y-3">
-                  <h3 className="mb-4 text-[28px] font-medium">Southside</h3>
+                  <h3 className="mb-4 text-[28px] font-medium">Mahalaxmi, Mumbai</h3>
                   
-                  <span className="mb-4 text-[20px] text-gray-700">Mahalaxmi, Mumbai</span>
+                  {/* <span className="mb-4 text-[20px] text-gray-700">Mahalaxmi, Mumbai</span> */}
 
                   {/* View Map link (opens Google Maps in new tab) */}
                   <div>
@@ -108,9 +108,9 @@ const MumbaiLocations = () => {
               {/* Text Column */}
               <div className="md:w-1/2 w-full flex flex-col justify-between p-6">
                 <div className="space-y-3">
-                  <h3 className="mb-4 text-[28px] font-medium">Varsity</h3>
+                  <h3 className="mb-4 text-[28px] font-medium">Santracruz, Mumbai</h3>
                   
-                  <span className="mb-4 text-[20px] text-gray-700">Santracruz, Mumbai</span>
+                  {/* <span className="mb-4 text-[20px] text-gray-700">Santracruz, Mumbai</span> */}
 
                   {/* View Map link (opens Google Maps in new tab) */}
                   <div>

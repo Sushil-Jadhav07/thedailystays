@@ -32,9 +32,9 @@ const PuneLocations = () => {
                       {/* Text Column */}
                       <div className="md:w-1/2 w-full flex flex-col justify-between p-6">
                         <div className="space-y-3">
-                  <h3 className="mb-4 text-[28px] font-medium">Hamlet</h3>
+                  <h3 className="mb-4 text-[28px] font-medium">Baner, Pune</h3>
                   
-                  <span className="mb-4 text-[20px] text-gray-700">Baner, Pune</span>
+                  {/* <span className="mb-4 text-[20px] text-gray-700">Baner, Pune</span> */}
 
                   {/* View Map link (opens Google Maps in new tab) */}
                   <div>

@@ -84,26 +84,30 @@ const HomeBanner = () => {
           <div className="grid grid-cols-1 md:grid-cols-4 lg:grid-cols-5  ">
             {/* Destination */}
             <div className="space-y-2 flex border-b-[1px] lg:border-r-[1px] border-[#272727] flex-col items-center">
-              <label className="text-sm pt-4 font-[QuicksandMedium] text-gray-700 uppercase tracking-wide">DESTINATION</label>
+              <label className="text-sm pt-6 font-[QuicksandMedium] text-black uppercase tracking-wide">DESTINATION</label>
               <div className="relative">
-                <select className="w-full p-4 pr-4 text-gray-600 bg-transparent border-0 focus:outline-none appearance-none cursor-pointer text-base">
-                  <option>Where to next</option>
-                  <option>Santracruz, Mumbai</option>
-                  <option>Mahalaxmi, Mumbai</option>
-                  <option>Baner, Pune</option>
-                
-                </select>
-                <IoChevronDown className="absolute right-0 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+                <div className="flex items-center  rounded px-4 py-0 text-base text-gray-600 bg-transparent w-full">
+                  <select
+                    className="flex-1 px-8 bg-transparent outline-none appearance-none cursor-pointer"
+                  >
+                    <option>Where to next</option>
+                    <option>Santracruz, Mumbai</option>
+                    <option>Mahalaxmi, Mumbai</option>
+                    <option>Baner, Pune</option>
+                  </select>
+                  <IoChevronDown className="ml-[-3rem] w-5 h-5 text-gray-400" />
+                </div>
               </div>
+
             </div>
 
             {/* Check In */}
             <div className="space-y-2 border-b-[1px] lg:border-r-[1px] border-[#272727] flex flex-col items-center">
-              <label className="text-sm pt-4 font-[QuicksandMedium] text-gray-700 uppercase tracking-wide">CHECK IN</label>
+              <label className="text-sm pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">CHECK IN</label>
               <div className="relative">
                 <input
                   type="date"
-                  className="w-full p-4 text-gray-600 bg-transparent border-0 focus:outline-none cursor-pointer text-base"
+                  className="w-full p-4 !pt-0 text-gray-600 bg-transparent border-0 focus:outline-none cursor-pointer text-base"
                   placeholder="Select date"
                 />
               </div>
@@ -111,11 +115,11 @@ const HomeBanner = () => {
 
             {/* Check Out */}
             <div className="space-y-2 border-b-[1px] lg:border-r-[1px] border-[#272727] flex flex-col items-center">
-              <label className="text-sm pt-4 font-[QuicksandMedium] text-gray-700 uppercase tracking-wide">CHECK OUT</label>
+              <label className="text-sm pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">CHECK OUT</label>
               <div className="relative">
                 <input
                   type="date"
-                  className="w-full p-4 text-gray-600 bg-transparent border-0 focus:outline-none cursor-pointer text-base"
+                  className="w-full p-4 !pt-0 text-gray-600 bg-transparent border-0 focus:outline-none cursor-pointer text-base"
                   placeholder="Select date"
                 />
               </div>
@@ -123,8 +127,8 @@ const HomeBanner = () => {
 
             {/* Guests */}
             <div className="space-y-2 border-b-[1px] lg:border-r-[1px] border-[#272727] flex flex-col items-center">
-              <label className="text-sm pt-4 font-[QuicksandMedium] text-gray-700 uppercase tracking-wide">GUESTS</label>
-              <div className="flex items-center justify-between p-4">
+              <label className="text-sm pt-4 font-[QuicksandMedium] text-black uppercase tracking-wide">GUESTS</label>
+              <div className="flex items-center justify-between p-4 !pt-0">
                 <button
                   onClick={decrementGuests}
                   className="w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50 transition-colors"

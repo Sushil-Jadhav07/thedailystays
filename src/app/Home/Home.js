@@ -27,10 +27,10 @@ const Home = () => {
         <BookingFloatingSearchBar />
         <FeaturesSection  /> 
         {/* <About /> */}
-        <Corporate/>
         <Stays />
         {/* <CorporateStays /> */}
         <Amenities />
+        <Corporate/>
         <TestimonialsSection />
         <FAQSection />
         {/* <Whyus /> */}

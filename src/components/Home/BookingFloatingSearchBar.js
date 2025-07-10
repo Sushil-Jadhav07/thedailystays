@@ -29,8 +29,8 @@ export default function BookingFloatingSearchBar() {
     <div
     className={`hidden md:block z-[998] w-full transition-all duration-300 ease-in-out ${
         isSticky
-        ? 'fixed top-[72px] left-1/2 -translate-x-1/2'
-        : 'absolute top-[70%] left-1/2 -translate-x-1/2'
+        ? 'fixed top-[92px] left-1/2 -translate-x-1/2'
+        : 'absolute top-[90%] left-1/2 -translate-x-1/2'
     }`}
     >
       <div className="w-[100%] bg-white shadow-2xl border border-gray-200 overflow-hidden">

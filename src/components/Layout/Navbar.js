@@ -212,11 +212,11 @@ export default function NavbarTwo() {
           <Topbar />
         </div> */}
   
-    <Navbar className={` z-[999] ${topNav ? "top-0" : ""} opacity-100 bg-opacity-100 w-[100vw !important] max-w-full bg-[#343434]  border-none shadow-none  rounded-none  py-2 px-4 lg:px-16 lg:py-2`}>
+    <Navbar className={` z-[999] ${topNav ? "top-0" : ""} opacity-100 bg-opacity-100 w-[100vw !important] max-w-full bg-[#343434]  border-none shadow-none  rounded-none  py-2 px-4 lg:px-8 lg:py-2`}>
       <div className="grid-cols-2  grid lg:grid-cols-5 justify-between items-center text-blue-gray-900">
         <div className="col-span-1 flex items-center justify-start gap-12 lg:col-span-3">
        <Link className="" href="/">
-        <Image className="lg:py-2 lg:w-[180px]" src={Logo} alt="" />
+        <Image className="lg:py-2 lg:w-[280px]" src={Logo} alt="" />
        
        </Link>
        <div className="lg:block hidden">
